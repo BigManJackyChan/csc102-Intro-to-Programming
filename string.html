@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Information Form with JavaScript</title>
+</head>
+<body>
+
+  <h1>Enter your information</h1>
+
+  <form id="user-form">
+    <div>
+      <label for="first-name">First Name:</label><br>
+      <input type="text" id="first-name" name="first-name" autocomplete="given-name" required>
+    </div>
+
+    <div>
+      <label for="last-name">Last Name:</label><br>
+      <input type="text" id="last-name" name="last-name" autocomplete="family-name" required>
+    </div>
+
+    <div>
+      <label for="zipcode">Zip Code:</label><br>
+      <input
+        type="text"
+        id="zipcode"
+        name="zipcode"
+        autocomplete="postal-code"
+        pattern="[0-9]{5}"
+        maxlength="5"
+        required
+      >
+    </div>
+    
+    <button type="button" onclick="storeData()">Submit</button>
+  </form>
+
+  <div id="output-area"></div>
+
+  <!-- Your updated script will go here -->
+<script>
+  function storeData() {
+    // Get the input elements by their new IDs
+    const firstNameInput = document.getElementById("first-name");
+    const lastNameInput = document.getElementById("last-name");
+    const zipcodeInput = document.getElementById("zipcode");
+
+    // Get the values from the input fields
+    const storedFirstName = firstNameInput.value;
+    const storedLastName = lastNameInput.value;
+    const storedZipcode = zipcodeInput.value;
+
+    // Combine the first and last names into a single variable
+    const storedFullName = `${storedFirstName} ${storedLastName}`;
+
+    // Display the variables on the page
+    const outputArea = document.getElementById("output-area");
+    outputArea.innerHTML = `
+      <p> Hello this is the secret message </p>
+    `;
+  }
+</script>
+</body>
+</html>

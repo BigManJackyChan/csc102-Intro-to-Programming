@@ -1,0 +1,36 @@
+/* CSS indicating to javascript what parameters the motion of the image will have */
+.circular-container {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  animation: rotate-container 4s linear infinite;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  animation-play-state: paused; /* Initially paused */
+}
+
+.circular-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) translateX(100px);
+  animation: rotate-image 4s linear infinite;
+  animation-play-state: paused; /* Initially paused */
+  width: 50px;
+  height: 50px;
+}
+
+/* This class is added to the container and image to start the animation */
+.is-animating {
+  animation-play-state: running;
+}
+/* Keyframes remain the same */
+@keyframes rotate-container {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes rotate-image {
+  from { transform: translate(-50%, -50%) rotate(0deg) translateX(100px) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(-360deg) translateX(100px) rotate(360deg); }
+}

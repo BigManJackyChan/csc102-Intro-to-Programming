@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palindrome Checker</title>
+    <style>
+        /* Apply styles to the entire body of the page */
+        body {
+            /* Set a fun, bright background color */
+            background-color: #f0f8ff; /* Alice Blue */
+            /* Set a modern, clean font family */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /* Center the content vertically and horizontally */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* Ensure the body takes at least the full viewport height */
+            min-height: 100vh;
+            /* Remove default margin */
+            margin: 0;
+            /* Set text color */
+            color: #333;
+        }
+
+        /* Style the main container for a neat appearance */
+        .container {
+            /* Set a maximum width for readability */
+            max-width: 600px;
+            /* Add padding inside the container */
+            padding: 30px;
+            /* Set a white background for contrast */
+            background-color: #ffffff;
+            /* Add a subtle shadow for depth */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            /* Round the corners */
+            border-radius: 15px;
+            /* Center the text within the container */
+            text-align: center;
+        }
+
+        /* Style the main heading */
+        h1 {
+            /* Set a distinct color for the heading */
+            color: #007bff; /* Bright Blue */
+            /* Add a bottom margin */
+            margin-bottom: 20px;
+        }
+
+        /* Style the paragraph where results will be displayed */
+        #result {
+            /* Increase font size for emphasis */
+            font-size: 1.2em;
+            /* Add vertical margin */
+            margin: 20px 0;
+            /* Bold the text */
+            font-weight: bold;
+        }
+
+        /* Style for the button (if added later, or just for visual consistency) */
+        button {
+            /* Set the button background color */
+            background-color: #28a745; /* Green */
+            /* Set text color to white */
+            color: white;
+            /* Add padding */
+            padding: 10px 20px;
+            /* Remove default border */
+            border: none;
+            /* Round the corners */
+            border-radius: 5px;
+            /* Change cursor on hover */
+            cursor: pointer;
+            /* Transition effect for hover */
+            transition: background-color 0.3s;
+        }
+
+        /* Change button color on hover for feedback */
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Palindrome Checker Pro 🔄</h1>
+        <img src="https://via.placeholder.com/300x100?text=Symmetry+Check" alt="Symmetry Check Graphic" style="width: 100%; max-width: 300px; margin-bottom: 20px; border-radius: 10px;"/>
+        <p id="result">Press the button to start checking words!</p>
+        <button onclick="startPalindromeCheck()">Start Check</button>
+    </div>
+
+    <script>
+        // Function to clean the string (remove spaces, convert to lowercase)
+        // This is crucial for the palindrome check
+        function cleanString(str) {
+            // Check if the input is a string
+            if (typeof str !== 'string') {
+                return ''; // Return empty string if not a valid string
+            }
+            // Use a regular expression to replace all spaces ('\s+') with an empty string ('')
+            // Then convert the entire string to lowercase so the check is case-insensitive
+            return str.replace(/\s+/g, '').toLowerCase();
+        }
+
+        // Function to check if a cleaned string is a palindrome
+        function isPalindrome(cleanedStr) {
+            // Reverse the cleaned string
+            // 1. split('') turns the string into an array of characters
+            // 2. reverse() reverses the order of the elements in the array
+            // 3. join('') combines the array back into a string
+            const reversedStr = cleanedStr.split('').reverse().join('');
+            
+            // Compare the original cleaned string with the reversed one
+            // If they are identical, it is a palindrome
+            return cleanedStr === reversedStr;
+        }
+
+        // Main function to start and manage the palindrome check loop
+        function startPalindromeCheck() {
+            // Variable to control the loop, initialized to true
+            let keepChecking = true;
+            // Get the HTML element where results will be displayed
+            const resultElement = document.getElementById('result');
+            // Clear the initial message
+            resultElement.innerHTML = '';
+
+            // Start an alert/prompt loop
+            while (keepChecking) {
+                // Prompt the user to enter a string
+                let userInput = prompt("Enter a word or phrase to check if it's a palindrome:");
+
+                // Check if the user clicked 'Cancel' or closed the prompt
+                if (userInput === null) {
+                    // Update the result message on the page
+                    resultElement.innerHTML += "<p>👋 Thanks for checking words! Goodbye.</p>";
+                    // Exit the loop
+                    break;
+                }
+
+                // Check if the user entered an empty string
+                if (userInput.trim() === "") {
+                    // Alert the user to enter something
+                    alert("Please enter a non-empty word or phrase.");
+                    // Continue to the next iteration of the loop
+                    continue;
+                }
+                
+                // ----------------- Palindrome Check Logic -----------------
+                // Clean the user's input: remove spaces and convert to lowercase
+                const cleanedInput = cleanString(userInput);
+
+                // Perform the palindrome check
+                const isPal = isPalindrome(cleanedInput);
+                
+                // ----------------- Notification and Prompt -----------------
+                // Variable to hold the result message
+                let message;
+                // Check the result of the palindrome function
+                if (isPal) {
+                    // Set the message for a palindrome
+                    message = `🎉 **"${userInput}"** **IS** a palindrome!`;
+                } else {
+                    // Set the message for a non-palindrome
+                    message = `😟 **"${userInput}"** **IS NOT** a palindrome.`;
+                }
+                
+                // Display the notification to the user using an alert box
+                alert(message.replace(/\*\*/g, '')); // Remove the ** for the alert box
+                
+                // Add the result message to the HTML page
+                // Using innerHTML to allow for bolding and formatting
+                resultElement.innerHTML += `<p>${message}</p>`;
+
+                // Ask the user if they want to enter another word
+                // confirm() returns true if 'OK' is clicked, false if 'Cancel' is clicked
+                let continuePrompt = confirm("Do you want to check another word?");
+                
+                // If the user clicks 'Cancel' (false), set keepChecking to false to exit the loop
+                if (!continuePrompt) {
+                    // Notify the user that they are exiting
+                    resultElement.innerHTML += "<p>👋 Exiting the palindrome checker. Have a great day!</p>";
+                    // Set the loop control variable to false
+                    keepChecking = false;
+                }
+                // If the user clicks 'OK' (true), keepChecking remains true and the loop continues
+            }
+        }
+    </script>
+</body>
+</html>

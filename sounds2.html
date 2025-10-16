@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Initial D Soundscape Project</title>
+    <head>
+        <!-- Metadata and browser title -->
+         <meta charset="UTF-8">
+         <meta name = "viewport" content="width=device-width", initial-scale="1.0">
+         
+
+         <!-- Link to custom google font -->
+
+         <!-- Internal CSS Style to enhance the look and feel -->
+          <style>
+            /* Apply a futurisitic font in our center text */
+            body{
+                font-family: 'Orbitron', 'sans-serif';
+                background-color: black; /* Deep space background color */
+                color: antiquewhite;
+                text-align: center;
+                padding: 20px;
+            
+            }
+            /* Styling the image with spacing and round corner */
+            img{
+                width: 300px;
+                border-radius: 15px;
+                margin-top: 20px;
+            }
+
+            /* styling the play button */
+            button{
+            font-size: 16px;
+            padding: 10px 20px;
+            margin-top: 20px;
+            background-color: #c40000;
+            color: rgb(0, 0, 0);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            }
+
+            /* Adding the hover effect to the button */
+            button:hover{
+                background-color: #b43d3d;
+            }
+          </style>
+    </head>
+</head>
+<body>
+    <div class="container">
+        <h1>Initial D: Hover over the picture!</h1>
+
+        <img id="soundTrigger" src="initial-d.jpg" alt="Icon representing intermission for Initial-D">
+
+        <p>Move your mouse over the icon to hear the First Stage transition sound.</p>
+    </div>
+
+    <audio id="soundFile" src="initial_d_intermission.mp3" preload="auto"></audio>
+
+    <script src="sounds2.js" defer></script>
+</body>
+</html>

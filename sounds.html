@@ -1,0 +1,67 @@
+<!-- Jack McCoy 10/14/2025 -->
+
+<!DOCTYPE hmtl>
+<hmtl lang="en">
+    <head>
+        <!-- Metadata and browser title -->
+         <meta charset="UTF-8">
+         <meta name = "viewport" content="width=device-width", initial-scale="1.0">
+         <title>Initial D Sound Experience</title>
+
+         <!-- Link to custom google font -->
+
+         <!-- Internal CSS Style to enhance the look and feel -->
+          <style>
+            /* Apply a futurisitic font in our center text */
+            body{
+                font-family: 'Orbitron', 'sans-serif';
+                background-color: black; /* Deep space background color */
+                color: antiquewhite;
+                text-align: center;
+                padding: 20px;
+            
+            }
+            /* Styling the image with spacing and round corner */
+            img{
+                width: 300px;
+                border-radius: 15px;
+                margin-top: 20px;
+            }
+
+            /* styling the play button */
+            button{
+            font-size: 16px;
+            padding: 10px 20px;
+            margin-top: 20px;
+            background-color: #c40000;
+            color: rgb(0, 0, 0);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            }
+
+            /* Adding the hover effect to the button */
+            button:hover{
+                background-color: #b43d3d;
+            }
+          </style>
+    </head>
+    <body>
+        <!-- Main header of the webpage -->
+         <h1>Experience the Sound of Initial D</h1>
+
+        <!-- Add a themed image i.e. space station theme -->
+         <img src="initial-d.jpg" alt="Initial-D Intermission">
+
+        <!-- Add a button that triggers the sound when clicked -->
+          <button onclick="playsound()">Play Intermission</button>
+
+        <!-- HTML audio element referencing the location MP3 -->
+         <audio src="initialdAudio">
+            <source src="initiald-intermission-end.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+         </audio>
+        <!-- Link to external JavaScript file -->
+        <script src="sounds.js"></script>
+    </body>
+</hmtl>
